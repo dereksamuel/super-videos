@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Super-Videos</title>
+  <link rel="stylesheet" href="./assets/styles.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+</head>
+<body>
+  <main id="app">
+    <header class="Header">
+      <h1 class="Header__title">Super - Videos</h1>
+      <div class="Header__container_video">
+        <video
+          id="video"
+          class="Header__video"
+          src="./assets/BigBuckBunny.mp4"
+          poster="./assets/Big_buck_bunny_poster_big.jpg"></video>
+        <div class="Header__buttons">
+          <button id="play" class="Header__buttons--play">
+            <i class="fas fa-play"></i>
+          </button>
+          <!-- <button id="pause" class="Header__buttons--pause">
+            <i class="fas fa-pause"></i>
+          </button> -->
+        </div>
+      </div>
+    </header>
+    <section class="Categories">
+      <div class="Categories__topic"><span>
+        Ciencia ficción
+      </span></div>
+      <div class="Categories__topic"><span>
+        Animación
+      </span></div>
+    </section>
+    <section class="Description">
+      <p><strong>Description:</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis nisi beatae fugit totam molestias delectus optio enim animi in eligendi. Ut eaque quas voluptate molestiae nobis libero tempore suscipit odio.
+      Nulla veniam adipisci nihil aperiam. Aspernatur, praesentium at tempora id repellendus quibusdam porro eum odio ullam enim, impedit accusamus! Et ipsum illum neque voluptatibus corrupti amet voluptas. Assumenda, nulla libero.
+      Numquam laborum cupiditate odit amet, eos sint reiciendis facilis quia eligendi voluptas perspiciatis necessitatibus quos aut totam maxime tempora rem sapiente, maiores repellat dolorem, commodi ratione beatae! Maiores, nam est.
+      Laudantium autem provident, doloribus nemo error dolorem illum cupiditate quis ab accusantium dignissimos sit, at, inventore quasi ullam fugit ducimus voluptatem eos perspiciatis veniam dolore nisi! Minus, reprehenderit? Ad, error!
+      Fuga harum in eos nulla optio exercitationem, aliquam amet natus expedita fugit tempora similique nemo cupiditate dolor laboriosam accusamus incidunt delectus nesciunt aspernatur facere autem ullam. Aperiam voluptatum debitis dolor?</p>
+    </section>
+    <section class="Comments">
+      <ul>
+        <li>
+          <div class="content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia vel sint distinctio debitis. Porro ea corrupti soluta ipsa minus repellendus voluptatem odit laborum cum, doloribus velit consectetur magni iusto dolores.
+          </div>
+        </li>
+        <li>
+          <div class="content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia vel sint distinctio debitis. Porro ea corrupti soluta ipsa minus repellendus voluptatem odit laborum cum, doloribus velit consectetur magni iusto dolores.
+          </div>
+        </li>
+        <li>
+          <div class="content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia vel sint distinctio debitis. Porro ea corrupti soluta ipsa minus repellendus voluptatem odit laborum cum, doloribus velit consectetur magni iusto dolores.
+          </div>
+        </li>
+        <li>
+          <div class="content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia vel sint distinctio debitis. Porro ea corrupti soluta ipsa minus repellendus voluptatem odit laborum cum, doloribus velit consectetur magni iusto dolores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum quas et voluptates aliquam nisi autem, distinctio at aperiam? Dignissimos non quisquam magni, totam quos deleniti soluta cum ad a officia.
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+  <script>
+    const $video = document.querySelector("video");
+    const $buttonPlay = document.querySelector("#play");
+
+    $buttonPlay.onclick = async () => $video.paused ? await $video.play() : $video.pause();
+  </script>
+</body>
+</html>
