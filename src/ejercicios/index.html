@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicios</title>
+</head>
+<body>
+  <main>
+    <h1>Exercises</h1>
+    <p><em>Go to the console f11</em></p>
+    <a href="/">Go back</a>
+    <ul>
+      <li><button class="call-to-function">Learn</button></li>
+      <li><button class="call-to-function">Learn more</button></li>
+      <li><button class="call-to-function">Never stop to learning!</button></li>
+    </ul>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script defer>
+    let message = "Hello Derek!!!";
+    let $ = function (message) {
+      alert(message);
+    };
+
+    function printNumbers (MyarrayNumber = [1]) {
+      // var i;// esto hace el js
+      for (var i = 0; i < MyarrayNumber.length; i++) {//con el valor eventual
+        function eventuallyPrintNumber(n) {
+          setInterval(function () {
+            console.log("DK", n);
+          }, 1000);
+        }
+
+        eventuallyPrintNumber(i);
+      }
+    }
+
+    function printNumbers2 (MyarrayNumber = [1]) {
+      // let i;// esto hace el js
+      for (let i = 0; i < MyarrayNumber.length; i++) {//let opera o trabaja en el bloq scope
+        setInterval(function () {
+          console.log(i);
+        }, 1000);
+      }
+    }
+  </script>
+  <script>
+    //IIFE Función que se le invoca invediatamente
+    (function (color = "blue") {
+      function printColor() {
+        console.log(color);
+      }
+
+      // printColor();
+    })("green");
+
+    function makeColorPrinter(cb = () => {}) {
+      let colorMessage = cb.name === "warn" ? "Color isn't red is yellow" : "Color should be red";
+      return function() {
+        console.log(cb(colorMessage));
+      };
+    }
+
+    let warnColor = makeColorPrinter(console.warn);
+    // console.log(warnColor());
+
+    function makeCounter(n) {
+      let count = n;//varaible PRIVADA
+
+      return {
+        increase: () => {
+          const inc = count ++;
+          return console.log("This is your result DESCREASE: ", inc);
+        },
+        decrease: () => {
+          const dec = count --;
+          if (counter === 0) {
+            return;
+          }
+          return console.log("This is your result DESCREASE: ", dec);
+        },
+        getCount: () => {
+          return console.log("The count is: ", count);
+        },
+      };
+    }
+
+    // let counter = makeCounter(7);
+
+    // console.log(counter);
+  </script>
+  <script>
+    console.log(`This, `, this);
+
+    "use strict";
+    function whoIsThis() {
+      return this;
+    }
+
+    const user = {
+      name: "Juancho",
+      getting: function() {
+        console.log("Hello i am ", this.name);
+      },
+    };
+
+    // console.log("Whoisthis ", whoIsThis());
+    // user.getting();
+
+    function Person(name) {
+      this.name = name;
+    }
+  </script>
+  <script>
+    function gettingACB() {
+      console.log(`Hello i am ${this.name} ${this.lastname}`);
+    }
+
+    const richard = {
+      name: "Derek",
+      lastname: "Paúl",
+    };
+
+    // gettingACB.call(richard);
+
+    function run(metros, direction) {
+      console.info(`${this.name} run ${metros} metros to ${direction}`);
+    }
+
+    // run.call(richard, 400, "Calle 40 sur");//para ser fácil
+    // run.apply(richard, [400, "Calle 40 nor"]);//para arreglos
+
+    const daniel = {
+      name: "Daniel",
+      lastname: "Paúl",
+    };
+
+    const danielRun = run.bind(daniel, 0.00022323232323);
+    // danielRun("Nor osete");
+
+    const $elementButton = document.getElementsByClassName("call-to-function");
+
+    Array.prototype.forEach.call($elementButton, ($element) => {
+      $element.onclick = () => console.log("Never stop to learning! ", this, $element);
+    });
+  </script>
+  <script>
+    // const heroMethods = {
+    //   getting: function (getting) {
+    //     console.info(this.name, "", getting);
+    //   },
+    // };
+
+    // function Hero (name) {
+    //   const hero = {
+    //     name,
+    //   };
+
+    //   hero.getting = heroMethods.getting;
+    //   return hero;
+    // }
+
+    // const hulk = Hero("Hulk"); 
+    // hulk.getting("Hi");
+
+    // const newObject = Object.create(object);
+    // const heroMethods = {
+    //   getting: function (getting) {
+    //     console.info(this.name, "", getting);
+    //   },
+    // };
+
+    // function Hero (name) {
+    //   const hero = Object.create(heroMethods);// copea propiedades de un objeto a uno nuevo y me hace HERENCIA PROTOTIPAL 😲
+    //   hero.name = name;
+    //   return hero;
+    // }
+
+    // Hero.prototype.getting = function (getting) {
+    //   console.info(this.name, "", getting);
+    // };
+
+    // const hulk = Hero("Hulk"); 
+    // hulk.getting("Hi");
+
+    // const heroMethods = {
+    //   getting: function (getting) {
+    //     console.info(this.name, "", getting);
+    //   },
+    // };
+
+    // function Hero (name) {
+    //   const hero = Object.create(Hero.prototype);// copea propiedades de un objeto a uno nuevo y me hace HERENCIA PROTOTIPAL 😲
+    //   hero.name = name;
+    //   return hero;
+    // }
+
+    // Hero.prototype.getting = function (getting) {
+    //   console.info(this.name, "", getting);
+    // };
+
+    // const hulk = new Hero("Hulk"); 
+    // hulk.getting("Hi");
+
+    const heroMethods = {
+      getting: function (getting) {
+        console.info(this.name, "", getting);
+      },
+    };
+
+    function Hero (name) {
+      // const hero = Object.create(Hero.prototype);// copea propiedades de un objeto a uno nuevo y me hace HERENCIA PROTOTIPAL 😲
+      this.name = name;
+      // return this; es implícito o por default
+    }
+
+    Hero.prototype.getting = function (getting) {
+      console.info(this.name, "", getting);
+    };
+
+    const hulk = new Hero("Hulk"); 
+    hulk.getting("Hi");
+  </script>
+</body>
+</html>

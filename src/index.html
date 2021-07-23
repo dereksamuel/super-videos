@@ -10,6 +10,7 @@
 </head>
 <body>
   <main id="app">
+    <script type="module" src="./assets/index.js" defer></script>
     <header class="Header">
       <h1 class="Header__title">Super - Videos</h1>
       <div class="Header__container_video">
@@ -19,12 +20,20 @@
           src="./assets/BigBuckBunny.mp4"
           poster="./assets/Big_buck_bunny_poster_big.jpg"></video>
         <div class="Header__buttons">
-          <button id="play" class="Header__buttons--play">
+          <button id="play" class="Header__buttons--play play-pause">
             <i class="fas fa-play"></i>
           </button>
-          <!-- <button id="pause" class="Header__buttons--pause">
+          <button id="pause" class="Header__buttons--pause play-pause">
             <i class="fas fa-pause"></i>
-          </button> -->
+          </button>
+        </div>
+        <div class="Header__bar">
+          <div class="Header__bar--unmuted">
+            <i class="fas fa-volume-mute"></i>
+          </div>
+          <div class="Header__bar--unmuted">
+            <i class="fas fa-volume-off"></i>
+          </div>
         </div>
       </div>
     </header>
@@ -68,11 +77,5 @@
       </ul>
     </section>
   </main>
-  <script>
-    const $video = document.querySelector("video");
-    const $buttonPlay = document.querySelector("#play");
-
-    $buttonPlay.onclick = async () => $video.paused ? await $video.play() : $video.pause();
-  </script>
 </body>
 </html>
