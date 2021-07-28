@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proxies</title>
+</head>
+<body>
+  <main id="app">
+    <a href="/">Go to HOME</a>
+    <h1><em>Go to console</em></h1>
+    <button>Generate fibonacci</button>
+    <div></div>
+  </main>
+  <script src="https://unpkg.com/fast-levenshtein@2.0.6/levenshtein.js" async type="module"></script>
+  <script>
+    const target = {
+      red: "#F53C14",
+      blue: "#1270F1",
+      green: "#12F119",
+    };
+
+    const handler = {
+      get(obj, prop) {
+        if (prop in obj) {
+          return obj[prop];
+        }
+
+        const suggestion = Object.keys(obj).find((key) => {
+          return window.Levenshtein.get(key, prop) <= 5;
+        });
+        if (suggestion) {
+          console.warn(`The prop ${prop} not found. Do you want say ${suggestion}?`);
+        }
+
+        return obj[prop];
+      },
+
+      set(obj, prop, newVal) {
+        if (newVal) {
+          console.error("This properties isn´t setters");
+        }
+      },
+    };
+
+    const proxy = new Proxy(target, handler);
+
+    function* simpleGenerator() {
+      console.info("Generator Start");
+      yield 1;//para ceder un puesto
+      yield 5;
+      console.info("Generator End");
+    }
+
+    function* idMaker() {
+      let id = 0;
+      while(true) {
+        yield id;
+        id = id + 1;
+      }
+    }
+
+    function* idMakerReset() {
+      let id = 0;
+      let reset;
+      while(true) {
+        reset = yield id;
+        if (reset) {
+          id = 0;
+        } else {
+          id = id + 1;
+        }
+      }
+    }
+
+    function* generateFibonacci() {
+      const div = document.querySelector("div");
+      let a = 1;
+      let b = 1;
+      while (true) {
+        const nextNumer = a + b;
+        a = b;
+        b = nextNumer;
+        div.innerHTML = `
+          ${div.innerHTML}
+          <p>${a} ${nextNumer}</p>
+        `;
+        yield `a = ${a} and b = ${nextNumer}`;
+      }
+    }
+
+    const fibonacci = generateFibonacci();
+    const gen = simpleGenerator();
+    const id = idMaker();
+    const idReset = idMakerReset();
+
+    document.querySelector("button").onclick = () => fibonacci.next();
+  </script>
+</body>
+</html>

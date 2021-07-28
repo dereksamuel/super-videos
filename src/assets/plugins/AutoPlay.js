@@ -1,10 +1,10 @@
 function AutoPlay() {}
 
 AutoPlay.prototype.run = function (player, toggleButton) {
-  // player.mute();
-  // player.play();
+  player.muted = true;
+  player.play();
 
-  if (player.media.muted) {
+  if (player.muted) {
     toggleButton("block", "none", player.$buttonMutedToggle);
   } else {
     toggleButton("none", "block", player.$buttonMutedToggle);

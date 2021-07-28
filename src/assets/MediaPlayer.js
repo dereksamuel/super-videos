@@ -1,15 +1,40 @@
 function MediaPlayer ({ el, buttonToggle, buttonMutedToggle, plugins = [] }) {
   this.media = el;
   this.plugins = plugins;
+  this.container = null;
   this.$buttonToggle = buttonToggle;
   this.$buttonMutedToggle = buttonMutedToggle;
 
+  this._initPlayer();
   this._initPlugins();
 }
 
+MediaPlayer.prototype._initPlayer = function () {
+  this.container = document.createElement("div");
+  this.container.style.position = "relative";
+  this.media.parentNode.insertBefore(this.container, this.media);
+  this.container.appendChild(this.media);
+}
+
 MediaPlayer.prototype._initPlugins = function () {
+  const player = {
+    play: () => this.play(),
+    pause: () => this.pause(),
+    media: this.media,
+    container: this.container,
+    $buttonMutedToggle: this.$buttonMutedToggle,
+    $buttonToggle: this.$buttonToggle,
+    get muted() {
+      return this.media.muted;
+    },
+
+    set muted(value) {
+      this.media.muted = value;
+    },
+  };
+
   for (const plugin of this.plugins) {
-    plugin.run(this, toggleButton);
+    plugin.run(player, toggleButton);
   }
 }
 

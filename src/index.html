@@ -10,7 +10,6 @@
 </head>
 <body>
   <main id="app">
-    <script type="module" src="./assets/index.js" defer></script>
     <header class="Header">
       <h1 class="Header__title">Super - Videos</h1>
       <div class="Header__container_video">
@@ -18,6 +17,7 @@
           id="video"
           class="Header__video"
           src="./assets/BigBuckBunny.mp4"
+          crossorigin="use-credentials"
           poster="./assets/Big_buck_bunny_poster_big.jpg"></video>
         <div class="Header__buttons">
           <button id="play" class="Header__buttons--play play-pause">
@@ -77,5 +77,8 @@
       </ul>
     </section>
   </main>
+  <script type="module">
+    import "./assets/index.mjs";
+  </script>
 </body>
 </html>
